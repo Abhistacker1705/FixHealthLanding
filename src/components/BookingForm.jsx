@@ -275,13 +275,13 @@ const BookingForm = () => {
             {renderStepContent()}
           </div>
           <div className="flex w-full justify-between mt-4">
-            {step < 6 && (
+            {step < 6 && step > 1 ? (
               <button
                 onClick={handlePreviousStep}
                 className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-full">
                 Previous
               </button>
-            )}
+            ) : null}
             {step < 5 && (
               <button
                 onClick={handleNextStep}
