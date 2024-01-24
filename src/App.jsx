@@ -1,9 +1,15 @@
+import {useEffect} from 'react';
 import BookingForm from './components/BookingForm';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Testimonials from './components/Testimonials';
 
 function App() {
+  //scroll to top after every refresh
+  useEffect(() => {
+    scrollTo(top, {behaviour: 'smooth'});
+  }, []);
+
   return (
     <>
       <div className="bg-gray-900 text-white min-h-screen">

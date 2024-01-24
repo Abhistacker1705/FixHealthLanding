@@ -12,4 +12,25 @@
     color: #646cff;
     text-decoration: inherit;
   }
+
+  /* scrollbar */
+  body::-webkit-scrollbar,
+  .testimonials::-webkit-scrollbar {
+    width: 8px;
+    border-radius: 6px;
+    background-color: transparent;
+  }
+
+  body::-webkit-scrollbar-thumb,
+  .testimonials::-webkit-scrollbar-thumb {
+    background-color: #4a5568;
+    border-radius: 6px;
+    border: 3px solid #2d3748;
+  }
+
+  body::-webkit-scrollbar-track,
+  .testimonials::-webkit-scrollbar-thumb {
+    background-color: #2d3748;
+    border-radius: 12px;
+  }
 }

@@ -10,7 +10,7 @@ const Footer = () => {
           />
         </div>
         <div className="flex gap-4">
-          <div className="flex gap-4">
+          <div className="flex gap-4 max-lg:flex-col">
             <a href="/blogs" className="text-white hover:text-blue-500">
               Blogs
             </a>
@@ -25,7 +25,7 @@ const Footer = () => {
               Terms & Conditions
             </a>
           </div>
-          <div className="flex gap-4">
+          <div className="flex gap-4 max-lg:flex-col">
             <a href="/about" className="text-white hover:text-blue-500">
               About Us
             </a>

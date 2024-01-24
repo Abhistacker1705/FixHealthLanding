@@ -1,5 +1,7 @@
 import axios from 'axios';
 import {useState, useEffect} from 'react';
+import Stepper from './Stepper';
+import DoctorsView from './DoctorsView';
 
 // Mock API data
 const fetchDoctorsData = async () => {
@@ -32,9 +34,9 @@ const BookingForm = () => {
 
   useEffect(() => {
     if (urlCity) {
-      setCity(urlCity);
+      setCity(urlCity.toLowerCase());
     } else setCity('');
-  }, []);
+  }, [urlCity]);
 
   useEffect(() => {
     // Fetch doctors data from the API
@@ -42,6 +44,15 @@ const BookingForm = () => {
       setDoctors(data);
     });
   }, []);
+
+  //steps
+  const steps = [
+    'Your Information',
+    'Personal Details',
+    'Chief Complaints',
+    'Physiotherapy Experience',
+    'Select a Doctor',
+  ];
 
   //step validation then only move to next step
   const isStepValid = () => {
@@ -212,28 +223,29 @@ const BookingForm = () => {
         return (
           <div className="mb-4">
             <p className="font-semibold mb-2">Select a Doctor:</p>
-            <select
-              value={selectedDoctor}
-              onChange={(e) => handleDoctorSelection(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring focus:border-blue-300">
-              <option value="" disabled>
-                Select a Doctor
-              </option>
+            <div className="testimonial flex gap-4 min-w-screen h-fit overflow-x-auto">
               {doctors
-                .filter((doctor) => doctor.city.toLowerCase() == city)
-                .map((doctor) => (
-                  <option key={doctor.name} value={doctor.name}>
-                    {doctor.name} - {doctor.expertise} - {doctor.city}
-                  </option>
+                .filter(
+                  (doctor) => doctor.city.toLowerCase() == city.toLowerCase()
+                )
+                .map((doctor, index) => (
+                  <DoctorsView
+                    key={doctor.name}
+                    selectedDoctor={selectedDoctor}
+                    handleDoctorSelection={handleDoctorSelection}
+                    idx={index}
+                    doctor={doctor}
+                  />
                 ))}
-            </select>
+            </div>
           </div>
         );
 
       case 6:
         return (
-          <div className="flex flex-col gap-4 justify-center items-center mb-4">
+          <div className="flex flex-col text-neutral-50 gap-4 justify-center items-center mb-4">
             <img
+              className="animate-pulse"
               width={'64px'}
               src="/CheckIcon.png"
               alt="Consultation with Fix Health"
@@ -249,23 +261,9 @@ const BookingForm = () => {
 
   return (
     <div className="w-full mx-auto px-4 py-8">
-      <div className="bg-white rounded-lg shadow-lg p-8">
+      <div className="bg-gray-900 shadow-gray-00 shadow-2xl rounded-lg p-8">
         <div className="flex flex-col items-center mb-6">
-          {step < 6 && (
-            <div className="flex gap-2 w-[20%]">
-              {/* Progress Bar */}
-
-              <div className="w-full h-4 bg-gray-300 rounded-full transition duration-500">
-                <div
-                  className={`h-full bg-blue-500 rounded-full transition-all duration-1000`}
-                  style={{width: `${(step - 1) * 20}%`}}></div>
-              </div>
-
-              <span className="text-sm text-gray-500 ml-1 w-[6ch]">
-                {step} of 5
-              </span>
-            </div>
-          )}
+          {step < 6 && <Stepper steps={steps} currentStep={step} />}
           <div className="w-4/5 text-slate-900">
             <h2 className="text-xl text-blue-500 font-semibold mb-4">
               {step === 6
@@ -273,31 +271,31 @@ const BookingForm = () => {
                 : `Help us understand you better`}
             </h2>
             {renderStepContent()}
-          </div>
-          <div className="flex w-full justify-between mt-4">
-            {step < 6 && step > 1 ? (
-              <button
-                onClick={handlePreviousStep}
-                className="bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded-full">
-                Previous
-              </button>
-            ) : null}
-            {step < 5 && (
-              <button
-                onClick={handleNextStep}
-                disabled={!isStepValid()}
-                className="bg-blue-500 ml-auto hover:bg-blue-600 text-white py-2 px-4 rounded-full disabled:bg-blue-100">
-                Next
-              </button>
-            )}
-            {step == 5 && (
-              <button
-                onClick={handleSubmit}
-                disabled={!isStepValid()}
-                className="bg-blue-500 ml-auto hover:bg-blue-600 text-white py-2 px-4 rounded-full disabled:bg-blue-100">
-                Submit
-              </button>
-            )}
+            <div className="flex w-full justify-between mt-4">
+              {step < 6 && step > 1 ? (
+                <button
+                  onClick={handlePreviousStep}
+                  className="bg-blue-500 hover:bg-gray-600 text-white py-2 px-4 rounded-full">
+                  Previous
+                </button>
+              ) : null}
+              {step < 5 && (
+                <button
+                  onClick={handleNextStep}
+                  disabled={!isStepValid()}
+                  className="bg-blue-500 ml-auto hover:bg-gray-600 text-white py-2 px-4 rounded-full disabled:bg-blue-100">
+                  Next
+                </button>
+              )}
+              {step == 5 && (
+                <button
+                  onClick={handleSubmit}
+                  disabled={!isStepValid()}
+                  className="bg-blue-500 ml-auto hover:bg-blue-600 text-white py-2 px-4 rounded-full disabled:bg-blue-100">
+                  Submit
+                </button>
+              )}
+            </div>
           </div>
         </div>
       </div>
