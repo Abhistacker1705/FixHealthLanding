@@ -27,8 +27,8 @@ const BookingForm = () => {
   const [selectedDoctor, setSelectedDoctor] = useState('');
 
   //get city from url param
-  const queryParameters = new URLSearchParams(window.location.search);
-  const urlCity = queryParameters.get('city');
+  let params = new URL(document.location).searchParams;
+  let urlCity = params.get('city');
 
   //set city value if city url param is present
 
