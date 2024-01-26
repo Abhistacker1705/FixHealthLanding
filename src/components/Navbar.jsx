@@ -28,18 +28,20 @@ const Navbar = () => {
         </div>
 
         <div className="flex items-center gap-4">
-          <a href="#" className="text-white hover:text-gray-300">
-            Home
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            Services
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            Blogs
-          </a>
-          <a href="#" className="text-white hover:text-gray-300">
-            About
-          </a>
+          <div className="max-md:hidden flex items-center gap-4">
+            <a href="#" className="text-white hover:text-gray-300">
+              Home
+            </a>
+            <a href="#" className="text-white hover:text-gray-300">
+              Services
+            </a>
+            <a href="#" className="text-white hover:text-gray-300">
+              Blogs
+            </a>
+            <a href="#" className="text-white hover:text-gray-300">
+              About
+            </a>
+          </div>
           <a
             href="#booking"
             className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-full">
