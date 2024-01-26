@@ -110,7 +110,9 @@ const BookingForm = () => {
   };
 
   const handleDoctorSelection = (doctorName) => {
-    setSelectedDoctor(doctorName);
+    if (selectedDoctor === doctorName) {
+      setSelectedDoctor('');
+    } else setSelectedDoctor(doctorName);
   };
 
   const renderStepContent = () => {
@@ -275,7 +277,7 @@ const BookingForm = () => {
               {step < 6 && step > 1 ? (
                 <button
                   onClick={handlePreviousStep}
-                  className="bg-blue-500 hover:bg-gray-600 text-white py-2 px-4 rounded-full">
+                  className="bg-blue-500 hover:bg-gray-600 text-white py-2 px-4 rounded-full border-none">
                   Previous
                 </button>
               ) : null}
@@ -283,7 +285,7 @@ const BookingForm = () => {
                 <button
                   onClick={handleNextStep}
                   disabled={!isStepValid()}
-                  className="bg-blue-500 ml-auto hover:bg-gray-600 text-white py-2 px-4 rounded-full disabled:bg-blue-100">
+                  className="bg-blue-500 ml-auto hover:bg-gray-600 text-white py-2 px-4 rounded-full border-none disabled:bg-blue-100">
                   Next
                 </button>
               )}
@@ -291,7 +293,7 @@ const BookingForm = () => {
                 <button
                   onClick={handleSubmit}
                   disabled={!isStepValid()}
-                  className="bg-blue-500 ml-auto hover:bg-blue-600 text-white py-2 px-4 rounded-full disabled:bg-blue-100">
+                  className="bg-blue-500 ml-auto hover:bg-blue-600 text-white py-2 px-4 rounded-full border-none disabled:bg-blue-100">
                   Submit
                 </button>
               )}

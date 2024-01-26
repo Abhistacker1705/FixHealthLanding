@@ -7,19 +7,18 @@ const Stepper = ({steps, currentStep}) => {
     <div className="flex mb-4">
       {steps.map((step, index) => (
         <div key={index} className="flex items-center">
-          <div className="flex flex-col items-center gap-4">
-            <div
-              className={`w-fit h-fit flex rounded-full border-2 transition-all duration-700 ${
-                index < currentStep
-                  ? 'bg-blue-500 border-blue-500'
-                  : 'bg-gray-300'
-              }`}>
-              <FaCheckCircle />
+          <div className="flex flex-col items-center gap-2">
+            <div className={`w-fit h-fit flex rounded-full bg-gray-300`}>
+              <FaCheckCircle
+                className="transition-all duration-700"
+                size={'2rem'}
+                color={index < currentStep ? 'rgb(59 130 246)' : ''}
+              />
             </div>
             <div
               className={`max-lg:hidden transition-all duration-700 ${
-                index < currentStep ? `text-blue-500` : `text-gray-300`
-              } text-xs`}>
+                index < currentStep ? `text-blue-300` : `text-gray-300`
+              } text-sm`}>
               {step}
             </div>
           </div>

@@ -68,7 +68,7 @@ const TestimonialCard = ({author, text, profile_pic, rating}) => {
     <div className="min-w-[25rem] bg-gray-800 p-6 rounded-lg shadow-md">
       <img
         loading="lazy"
-        className="w-full h-96 mb-4"
+        className="w-full h-96 mb-4 object-cover"
         src={profile_pic}
         alt="Testimonials or Recommedations for FixHealth from people"
       />

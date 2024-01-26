@@ -23,7 +23,7 @@ const Navbar = () => {
           <img
             src="https://ik.imagekit.io/tcfp7i31d/logo_with_yp_white_6p2ZETYLi.svg"
             alt="Fix Health previously YourPhysio Rated 5 star across platforms"
-            className="h-16 w-32 "
+            className="h-16 w-32"
           />
         </div>
 
